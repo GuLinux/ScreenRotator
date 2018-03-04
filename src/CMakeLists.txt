@@ -6,6 +6,5 @@ target_link_libraries(screenrotator Qt5::Gui Qt5::X11Extras Qt5::Sensors Qt5::Wi
 install(TARGETS screenrotator RUNTIME DESTINATION bin)
 install(FILES screenrotator.desktop DESTINATION share/applications)
 file(GLOB ICON_DIRECTORIES resources/*x*)
-message(${ICON_DIRECTORIES})
 install(DIRECTORY  ${ICON_DIRECTORIES} resources/scalable DESTINATION share/icons/hicolor/)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/screenrotator-autostart.desktop DESTINATION /etc/xdg/autostart/)

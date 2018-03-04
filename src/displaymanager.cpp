@@ -64,8 +64,8 @@ public:
 
 QHash<Orientation, Rotation> orientation2rotation {
   {TopUp, RR_Rotate_0},
-  {TopDown, RR_Rotate_90},
-  {LeftUp, RR_Rotate_180},
+  {TopDown, RR_Rotate_180},
+  {LeftUp, RR_Rotate_90},
   {RightUp, RR_Rotate_270},
 };
 

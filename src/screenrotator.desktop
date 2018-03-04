@@ -6,4 +6,4 @@ Type=Application
 Exec=screenrotator
 Icon=screenrotator
 Terminal=false
-Categories=Qt;Settings;
+Categories=Qt;System;

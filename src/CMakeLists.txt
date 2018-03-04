@@ -1,7 +1,7 @@
 set(screenrotator_SRCS displaymanager.cpp orientationsensor.cpp trayicon.cpp rotateinput.cpp)
 add_executable(screenrotator main.cpp ${screenrotator_SRCS})
 configure_file(screenrotator-autostart.desktop.in screenrotator-autostart.desktop)
-target_link_libraries(screenrotator Qt5::Gui Qt5::X11Extras Qt5::Sensors Qt5::Widgets Xrandr Xi X11)
+target_link_libraries(screenrotator Qt5::Gui Qt5::X11Extras Qt5::Sensors Qt5::Widgets Qt5::DBus Xrandr Xi X11)
 
 install(TARGETS screenrotator RUNTIME DESTINATION bin)
 install(FILES screenrotator.desktop DESTINATION share/applications)

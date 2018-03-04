@@ -1,9 +1,9 @@
 #include <QGuiApplication>
-#include <QQmlApplicationEngine>
+#include "displaymanager.h"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
-    QQmlApplicationEngine engine(QUrl(QStringLiteral("qrc:/qml/main.qml")));
+    DisplayManager displayManager;
     return app.exec();
 }

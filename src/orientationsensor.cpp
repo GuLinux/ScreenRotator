@@ -19,6 +19,7 @@
 #include "orientationsensor.h"
 #include <QOrientationSensor>
 #include <QHash>
+#include <QDebug>
 
 class OrientationSensor::Private {
 public:
@@ -40,6 +41,11 @@ OrientationSensor::OrientationSensor(QObject* parent) : QObject{parent}, d{new P
     }
     delete reading;
   });
+  connect(&d->sensor, &QOrientationSensor::sensorError, this, [this](int error){
+    qDebug() << "Sensor error: " << error;
+  });
+  auto started = d->sensor.start();
+  
 }
 
 OrientationSensor::~OrientationSensor()

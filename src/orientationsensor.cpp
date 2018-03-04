@@ -36,10 +36,11 @@ OrientationSensor::OrientationSensor(QObject* parent) : QObject{parent}, d{new P
   };
   connect(&d->sensor, &QOrientationSensor::readingChanged, this, [this]{
     auto reading = d->sensor.reading();
+    if(! reading)
+      return;
     if(d->to_orientation.keys().contains(reading->orientation())) {
       emit this->reading(d->to_orientation[reading->orientation()]);
     }
-    delete reading;
   });
   connect(&d->sensor, &QOrientationSensor::sensorError, this, [this](int error){
     qDebug() << "Sensor error: " << error;

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Screen Rotator
+Exec=@CMAKE_INSTALL_PREFIX@/bin/screenrotator
+NoDisplay=true
+X-KDE-StartupNotify=false

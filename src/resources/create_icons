@@ -1,0 +1,7 @@
+#!/bin/bash
+for size in $( ls /usr/share/icons/hicolor | grep x | grep -v index ); do
+    size_x="${size%%x*}"
+    size_y="${size##*x}"
+    mkdir -p "$size"/apps
+    inkscape -z -e "$size/apps/screenrotator.png" -w $size_x -h "$size_y" scalable/apps/screenrotator.svg
+done

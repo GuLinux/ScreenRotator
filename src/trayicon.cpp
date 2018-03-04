@@ -31,7 +31,7 @@ public:
 
 TrayIcon::TrayIcon(QObject* parent) : QObject{parent}, d{new Private}
 {
-  d->tray.setIcon(QIcon{":/screen_rotator_16x16.png"});
+  d->tray.setIcon(QIcon::fromTheme("screenrotator"));
   d->menu.reset(new QMenu());
   d->tray.setToolTip(tr("Screen Rotator"));
   

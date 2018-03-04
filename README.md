@@ -12,10 +12,11 @@ Similar to the current solution implemented in Gnome, but works on all other des
  - gcc
  - Qt5 (with modules x11extras, sensors)
  - xrandr
+ - XInput (Xi)
  
 On ubuntu, run the following command to install dependencies:
 ```
-sudo apt install -y git cmake build-essential qtbase5-dev libxrandr-dev libqt5x11extras5-dev libqt5sensors5-dev 
+sudo apt install -y git cmake build-essential qtbase5-dev libxrandr-dev libxi-dev libqt5x11extras5-dev libqt5sensors5-dev 
 ```
 
 ## Building

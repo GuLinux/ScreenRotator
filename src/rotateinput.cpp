@@ -45,6 +45,7 @@ struct InputDevice {
   QString name;
   int id;
   bool isTouchScreen = false;
+  bool hasRotationMatrix = false;
   QList<InputProperty> properties();
 };
 
@@ -58,6 +59,10 @@ InputDevice::InputDevice(XIDeviceInfo* info, Display *display) : display{display
       qDebug() << "Device" << info->name << "seems to be a touchscreen device";
       isTouchScreen = true;
     }
+  }
+  for(auto property: properties()) {
+    if(property.isRotationMatrix())
+      this->hasRotationMatrix = true;
   }
 }
 
@@ -127,7 +132,7 @@ RotateInput::RotateInput(QObject* parent) : QObject{parent}, d{new Private}
   XIDeviceInfo *deviceInfo = XIQueryDevice(d->display, XIAllDevices, &devices);
   for(int i=0; i<devices; i++) {
     InputDevice device{&deviceInfo[i], d->display};
-    if(device.isTouchScreen)
+    if(device.hasRotationMatrix)
       d->devices.push_back(device);
   }
   XIFreeDeviceInfo(deviceInfo);

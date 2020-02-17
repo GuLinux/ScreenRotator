@@ -21,6 +21,7 @@
 #include <QTimer>
 #include <QMenu>
 #include <QApplication>
+#include <stdlib.h> /* getenv */
 
 using namespace std;
 class TrayIcon::Private {
@@ -31,13 +32,19 @@ public:
 
 TrayIcon::TrayIcon(QObject* parent) : QObject{parent}, d{new Private}
 {
+  char* pTray;
+  pTray = getenv ("SR_TRAY");
   d->tray.setIcon(QIcon::fromTheme("screenrotator"));
   d->menu.reset(new QMenu());
   d->tray.setToolTip(tr("Screen Rotator"));
   
   d->tray.setContextMenu(d->menu.get());
   d->menu->addAction(tr("Quit"), qApp, &QApplication::quit);
-  QTimer::singleShot(100, &d->tray, &QSystemTrayIcon::show);
+  if (pTray != NULL) {
+      QTimer::singleShot(100, &d->tray, &QSystemTrayIcon::hide);
+  } else {
+      QTimer::singleShot(100, &d->tray, &QSystemTrayIcon::show);
+  }
 }
 
 TrayIcon::~TrayIcon()

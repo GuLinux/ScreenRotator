@@ -75,7 +75,7 @@ Orientation DisplayManager::Private::to_orientation(Rotation rotation)
     if(orientation2rotation[key] == rotation)
       return key;
     // TODO: fallback value?
-    return Orientation::LeftUp;
+    return Orientation::TopUp;
 }
 
 

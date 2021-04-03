@@ -154,7 +154,7 @@ void RotateInput::scanForTouchDevices()
 
 void RotateInput::rotate(Orientation orientation)
 {
-  this->this.scanForTouchDevices();
+  this->scanForTouchDevices();
 #ifdef USE_XINPUT
   static QHash<Orientation, QStringList>  orientation_matrix_map {
     {TopUp, {"1", "0", "0", "0", "1", "0", "0", "0", "1"}},

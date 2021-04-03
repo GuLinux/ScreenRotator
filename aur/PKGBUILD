@@ -1,7 +1,7 @@
 # Maintainer: Marco Gulino <marco.gulino@gmail.com>
 
 pkgname=screenrotator-modified-git
-pkgver=r27.3e76a2b
+pkgver=r31.28f7e29
 pkgrel=1
 epoch=1
 pkgdesc='Automatic screen rotation daemon for X11'
@@ -14,24 +14,24 @@ source=("${pkgname}::git+${url}")
 sha256sums=('SKIP')
 
 pkgver() {
-    cd "$pkgname"
-    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  cd "$pkgname"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 prepare() {
-    cd "$srcdir/$pkgname"
-	install -d build
+  cd "$srcdir/$pkgname"
+  install -d build
 }
 
 build() {
-    cd "$srcdir/$pkgname/build"
-	cmake ..\
-		-DCMAKE_INSTALL_PREFIX=/usr \
-		-DCMAKE_BUILD_TYPE=Release
-	make
+  cd "$srcdir/$pkgname/build"
+  cmake ..\
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_BUILD_TYPE=Release
+  make
 }
 
 package() {
-    cd "$srcdir/$pkgname/build"
-	make DESTDIR="$pkgdir" install
+  cd "$srcdir/$pkgname/build"
+  make DESTDIR="$pkgdir" install
 }

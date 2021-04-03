@@ -172,8 +172,8 @@ void RotateInput::rotate(Orientation orientation)
   for(auto device: d->devices) {
     for(auto property: device.properties()) {
       if(property.isRotationMatrix()) {
-        //qDebug() << "Changing orientation matrix for device " << device.name << ", property " << property.name;
-        //property.setRotationMatrix(orientation_matrix);
+        qDebug() << "Changing orientation matrix for device " << device.name << ", property " << property.name;
+        property.setRotationMatrix(orientation_matrix);
       }
     }
   }

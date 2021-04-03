@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Screen Rotator
+Exec=/usr/bin/screenrotator
+NoDisplay=true
+X-KDE-StartupNotify=false

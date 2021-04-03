@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Screen Rotator
+GenericName=Screen Rotator
+Comment=Automatically rotate X11 orientation based on accelerometer sensor data
+Type=Application
+Exec=screenrotator
+Icon=screenrotator
+Terminal=false
+Categories=Qt;System;

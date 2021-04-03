@@ -96,7 +96,7 @@ void DisplayManager::setOrientation(Orientation orientation)
   auto rotation = orientation2rotation[orientation];
   //if(mediator.rotation == rotation)
   //  return;
-  this->mediator.setRotation(rotation);
+  d->mediator.setRotation(rotation);
   d->currentOrientation = orientation;
-  qDebug() << "Current orientation: " << d->currentOrientation << ", rotation: " << mediator.rotation;
+  qDebug() << "Current orientation: " << d->currentOrientation << ", rotation: " << d->mediator.rotation;
 }

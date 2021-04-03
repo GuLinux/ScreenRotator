@@ -84,7 +84,6 @@ DisplayManager::DisplayManager(QObject* parent) : QObject{parent}, d{new Private
 {
   DisplayManagerX11Mediator mediator;
   d->currentOrientation = d->to_orientation(mediator.rotation);
-  qDebug() << "Current orientation: " << d->currentOrientation << ", rotation: " << mediator.rotation;
 }
 
 DisplayManager::~DisplayManager()
@@ -93,10 +92,11 @@ DisplayManager::~DisplayManager()
 
 void DisplayManager::setOrientation(Orientation orientation)
 {
-  DisplayManagerX11Mediator mediator;
+  //DisplayManagerX11Mediator mediator;
   auto rotation = orientation2rotation[orientation];
   //if(mediator.rotation == rotation)
   //  return;
-  mediator.setRotation(rotation);
+  this->mediator.setRotation(rotation);
   d->currentOrientation = orientation;
+  qDebug() << "Current orientation: " << d->currentOrientation << ", rotation: " << mediator.rotation;
 }

@@ -95,8 +95,8 @@ void DisplayManager::setOrientation(Orientation orientation)
 {
   DisplayManagerX11Mediator mediator;
   auto rotation = orientation2rotation[orientation];
-  if(mediator.rotation == rotation)
-    return;
+  //if(mediator.rotation == rotation)
+  //  return;
   mediator.setRotation(rotation);
   d->currentOrientation = orientation;
 }

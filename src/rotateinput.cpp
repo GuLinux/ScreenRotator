@@ -56,7 +56,7 @@ InputDevice::InputDevice(XIDeviceInfo* info, Display *display) : display{display
   id = info->deviceid;
   for(int j=0; j<info->num_classes; j++) {
     if(info->classes[j]->type == XITouchClass) {
-      qDebug() << "Device" << info->name << "seems to be a touchscreen device";
+      qDebug() << "Device" << info->name << "has touchscreen functionality";
       isTouchScreen = true;
     }
   }
@@ -90,7 +90,7 @@ InputProperty::InputProperty(int deviceId, Display* display, Atom atom) : device
   if(XIGetProperty(display, deviceId, atom, 0, 0, False, AnyPropertyType, &property_type, &property_format, &items_count, &bytes_after, &data) == Success) {
     type = property_type;
     format = property_format;
-    qDebug() << "Property name=" << name << ", atom=" << atom << ", format=" << format << ", type=" << type;
+    //qDebug() << "Property name=" << name << ", atom=" << atom << ", format=" << format << ", type=" << type;
     XFree(data);
   } else {
     qDebug() << "Unable to get data for property " << name;
@@ -171,7 +171,7 @@ void RotateInput::rotate(Orientation orientation)
   for(auto device: d->devices) {
     for(auto property: device.properties()) {
       if(property.isRotationMatrix()) {
-        qDebug() << "Changing orientation matrix for device " << device.name << "using matrix " << orientation_matrix;
+        qDebug() << "Changing orientation matrix for device" << device.name << "using matrix" << orientation_matrix;
         property.setRotationMatrix(orientation_matrix);
       }
     }

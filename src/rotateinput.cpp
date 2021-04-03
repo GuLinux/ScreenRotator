@@ -128,15 +128,7 @@ public:
 RotateInput::RotateInput(QObject* parent) : QObject{parent}, d{new Private}
 {
   d->display = QX11Info::display();
-  int devices;
-  XIDeviceInfo *deviceInfo = XIQueryDevice(d->display, XIAllDevices, &devices);
-  for(int i=0; i<devices; i++) {
-    InputDevice device{&deviceInfo[i], d->display};
-    if(device.hasRotationMatrix && device.name.startsWith("Wacom Pen"))
-      d->devices.push_back(device);
-  }
-  //XIFreeDeviceInfo(deviceInfo);
-
+  this->scanForTouchDevices();
   //for(auto device: d->devices) {
   //  for(auto property: device.properties()) {
   //    qDebug() << "Device" << device.name << ", property:" << property.name << ", atom=" << property.atom << ", type: " << property.type;
@@ -147,8 +139,22 @@ RotateInput::~RotateInput()
 {
 }
 
+void RotateInput::scanForTouchDevices()
+{
+  d->devices.clear();
+  int devices;
+  XIDeviceInfo *deviceInfo = XIQueryDevice(d->display, XIAllDevices, &devices);
+  for(int i=0; i<devices; i++) {
+    InputDevice device{&deviceInfo[i], d->display};
+    if(device.hasRotationMatrix && device.name.startsWith("Wacom Pen"))
+      d->devices.push_back(device);
+  }
+  XIFreeDeviceInfo(deviceInfo);
+}
+
 void RotateInput::rotate(Orientation orientation)
 {
+  this->this.scanForTouchDevices();
 #ifdef USE_XINPUT
   static QHash<Orientation, QStringList>  orientation_matrix_map {
     {TopUp, {"1", "0", "0", "0", "1", "0", "0", "0", "1"}},

@@ -34,6 +34,7 @@ public slots:
 private:
   class Private;
   std::unique_ptr<Private> d;
+  void scanForTouchDevices();
 };
 
 #endif // ROTATEINPUT_H

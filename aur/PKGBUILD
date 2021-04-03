@@ -1,5 +1,5 @@
 pkgname=screenrotator-modified-git
-pkgver=r34.ed2e479
+pkgver=r36.2cd5001
 pkgrel=1
 epoch=1
 pkgdesc='Automatic screen rotation daemon for X11'

@@ -33,7 +33,7 @@ struct InputProperty {
   Atom type;
   int format;
   QString name;
-  
+
   bool isRotationMatrix() const;
   void setRotationMatrix(const vector<float> &matrix);
 };
@@ -136,7 +136,7 @@ RotateInput::RotateInput(QObject* parent) : QObject{parent}, d{new Private}
       d->devices.push_back(device);
   }
   XIFreeDeviceInfo(deviceInfo);
-  
+
   for(auto device: d->devices) {
     for(auto property: device.properties()) {
       qDebug() << "Device" << device.name << ", property:" << property.name << ", atom=" << property.atom << ", type: " << property.type;
@@ -172,8 +172,8 @@ void RotateInput::rotate(Orientation orientation)
   for(auto device: d->devices) {
     for(auto property: device.properties()) {
       if(property.isRotationMatrix()) {
-        qDebug() << "Changing orientation matrix for device " << device.name << ", property " << property.name;
-        property.setRotationMatrix(orientation_matrix);
+        //qDebug() << "Changing orientation matrix for device " << device.name << ", property " << property.name;
+        //property.setRotationMatrix(orientation_matrix);
       }
     }
   }

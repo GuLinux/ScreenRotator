@@ -1,7 +1,7 @@
 # Maintainer: Marco Gulino <marco.gulino@gmail.com>
 
 pkgname=screenrotator-modified-git
-pkgver=r25.e1de8b7
+pkgver=r27.3e76a2b
 pkgrel=1
 epoch=1
 pkgdesc='Automatic screen rotation daemon for X11'

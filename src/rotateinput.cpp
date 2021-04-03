@@ -132,7 +132,7 @@ RotateInput::RotateInput(QObject* parent) : QObject{parent}, d{new Private}
   XIDeviceInfo *deviceInfo = XIQueryDevice(d->display, XIAllDevices, &devices);
   for(int i=0; i<devices; i++) {
     InputDevice device{&deviceInfo[i], d->display};
-    if(device.hasRotationMatrix)
+    if(device.hasRotationMatrix && device.name.startsWith("Wacom Pen"))
       d->devices.push_back(device);
   }
   XIFreeDeviceInfo(deviceInfo);

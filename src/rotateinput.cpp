@@ -137,11 +137,11 @@ RotateInput::RotateInput(QObject* parent) : QObject{parent}, d{new Private}
   }
   XIFreeDeviceInfo(deviceInfo);
 
-  for(auto device: d->devices) {
-    for(auto property: device.properties()) {
-      qDebug() << "Device" << device.name << ", property:" << property.name << ", atom=" << property.atom << ", type: " << property.type;
-    }
-  }
+  //for(auto device: d->devices) {
+  //  for(auto property: device.properties()) {
+  //    qDebug() << "Device" << device.name << ", property:" << property.name << ", atom=" << property.atom << ", type: " << property.type;
+  //  }
+  //}
 }
 RotateInput::~RotateInput()
 {
@@ -168,11 +168,10 @@ void RotateInput::rotate(Orientation orientation)
     {RightUp, {0, 1, 0, -1, 0, 1, 0, 0, 1}},
   };
   auto orientation_matrix = orientation_matrix_map[orientation];
-  qDebug() << "Setting rotation matrix: " << orientation_matrix;
   for(auto device: d->devices) {
     for(auto property: device.properties()) {
       if(property.isRotationMatrix()) {
-        qDebug() << "Changing orientation matrix for device " << device.name << ", property " << property.name;
+        qDebug() << "Changing orientation matrix for device " << device.name << "using matrix " << orientation_matrix;
         property.setRotationMatrix(orientation_matrix);
       }
     }

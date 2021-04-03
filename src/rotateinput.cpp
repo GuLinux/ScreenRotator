@@ -135,7 +135,7 @@ RotateInput::RotateInput(QObject* parent) : QObject{parent}, d{new Private}
     if(device.hasRotationMatrix && device.name.startsWith("Wacom Pen"))
       d->devices.push_back(device);
   }
-  XIFreeDeviceInfo(deviceInfo);
+  //XIFreeDeviceInfo(deviceInfo);
 
   //for(auto device: d->devices) {
   //  for(auto property: device.properties()) {

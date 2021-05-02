@@ -146,8 +146,9 @@ void RotateInput::scanForTouchDevices()
   XIDeviceInfo *deviceInfo = XIQueryDevice(d->display, XIAllDevices, &devices);
   for(int i=0; i<devices; i++) {
     InputDevice device{&deviceInfo[i], d->display};
-    if(device.hasRotationMatrix && device.name.startsWith("Wacom Pen"))
-      d->devices.push_back(device);
+    if(device.hasRotationMatrix)
+      if(device.name.startsWith("Wacom Pen") || device.name.startsWith("Goodix Capacitive"))
+        d->devices.push_back(device);
   }
   XIFreeDeviceInfo(deviceInfo);
 }

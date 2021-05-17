@@ -13,15 +13,15 @@ Similar to the current solution implemented in Gnome, but works on all other des
  - Qt5 (with modules x11extras, sensors)
  - xrandr
  - XInput (Xi)
- 
+
 On ubuntu, run the following command to install dependencies:
 ```
-sudo apt install -y git cmake build-essential qtbase5-dev libxrandr-dev libxi-dev libqt5x11extras5-dev libqt5sensors5-dev 
+sudo apt install -y git cmake build-essential qtbase5-dev libxrandr-dev libxi-dev libqt5x11extras5-dev libqt5sensors5-dev
 ```
 
 ## Building
 ```
-git clone https://github.com/GuLinux/ScreenRotator
+git clone https://github.com/pakro/ScreenRotator
 mkdir ScreenRotator/build
 cd ScreenRotator/build
 cmake ..
@@ -31,5 +31,4 @@ sudo make install
 
 ## Links
 
-Main icon: https://www.iconfinder.com/icons/326583/orientation_rotation_screen_icon#size=256
-
+Main icon from https://www.onlinewebfonts.com/icon/310563

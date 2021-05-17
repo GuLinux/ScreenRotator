@@ -30,7 +30,7 @@ struct DisplayManagerX11Mediator {
   XRRScreenConfiguration *screenConfiguration;
   Rotation rotation;
   SizeID configurationId;
-  
+
   DisplayManagerX11Mediator();
   ~DisplayManagerX11Mediator();
   bool setRotation(Rotation rotation);
@@ -75,7 +75,7 @@ Orientation DisplayManager::Private::to_orientation(Rotation rotation)
     if(orientation2rotation[key] == rotation)
       return key;
     // TODO: fallback value?
-    return Orientation::LeftUp;
+    return Orientation::TopUp;
 }
 
 
@@ -84,7 +84,6 @@ DisplayManager::DisplayManager(QObject* parent) : QObject{parent}, d{new Private
 {
   DisplayManagerX11Mediator mediator;
   d->currentOrientation = d->to_orientation(mediator.rotation);
-  qDebug() << "Current orientation: " << d->currentOrientation << ", rotation: " << mediator.rotation;
 }
 
 DisplayManager::~DisplayManager()
@@ -95,8 +94,7 @@ void DisplayManager::setOrientation(Orientation orientation)
 {
   DisplayManagerX11Mediator mediator;
   auto rotation = orientation2rotation[orientation];
-  if(mediator.rotation == rotation)
-    return;
   mediator.setRotation(rotation);
   d->currentOrientation = orientation;
+  qDebug() << "Current orientation: " << d->currentOrientation << ", rotation: " << mediator.rotation;
 }

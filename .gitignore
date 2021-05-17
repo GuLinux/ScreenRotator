@@ -1,3 +1,5 @@
-.kdev4
 build
-ScreenRotator.kdev4
+aur/src/**
+aur/pkg/**
+aur/screenrotator-modified-git/**
+aur/*.tar.zst

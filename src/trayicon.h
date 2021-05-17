@@ -20,6 +20,8 @@
 #define TRAYICON_H
 
 #include <QObject>
+#include <QSystemTrayIcon>
+#include "orientation.h"
 #include <memory>
 class TrayIcon : public QObject
 {
@@ -27,9 +29,18 @@ class TrayIcon : public QObject
 public:
     TrayIcon(QObject* parent = nullptr);
     ~TrayIcon();
+public slots:
+  void setAutoRotating(bool autoRotating);
+  void toggleAutoRotating();
+  void orientationUpdated(Orientation orientation);
+  void activated(QSystemTrayIcon::ActivationReason reason);
+  void messageClicked();
 private:
   class Private;
   std::unique_ptr<Private> d;
+  void emitRotationIfHas();
+signals:
+  void emitRotation(Orientation orientation);
 };
 
 #endif // TRAYICON_H

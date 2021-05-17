@@ -19,7 +19,9 @@ int main(int argc, char *argv[])
     TrayIcon tray;
     OrientationSensor sensor;
     RotateInput rotateInput;
-    QObject::connect(&sensor, &OrientationSensor::reading, &displayManager, &DisplayManager::setOrientation);
-    QObject::connect(&sensor, &OrientationSensor::reading, &rotateInput, &RotateInput::rotate);
+    QObject::connect(&sensor, &OrientationSensor::reading, &tray, &TrayIcon::orientationUpdated);
+    QObject::connect(&tray, &TrayIcon::emitRotation, &displayManager, &DisplayManager::setOrientation);
+    QObject::connect(&tray, &TrayIcon::emitRotation, &rotateInput, &RotateInput::rotate);
+
     return app.exec();
 }
